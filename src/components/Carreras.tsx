@@ -9,7 +9,8 @@ import {
   MapPin,
   Clock,
   Calendar,
-  ExternalLink
+  ExternalLink,
+  Search,
 } from "lucide-react";
 
 const carrerasPorSede = {
@@ -104,6 +105,10 @@ const carrerasPorSede = {
   ]
 };
 
+const removeAccents = (str: string): string => {
+  return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+};
+
 const Carreras = () => {
   const [sedeSeleccionada, setSedeSeleccionada] = useState<string>("TODAS");
   {/* SI VIENE DE SEDES DEBE TENER EL FILTRO GUARDADO */}
@@ -115,37 +120,45 @@ const Carreras = () => {
     }
   }, []);
   const [mostrarTodas, setMostrarTodas] = useState(false);
-
+  const [searchTerm, setSearchTerm] = useState(""); 
+  
   const sedes = Object.keys(carrerasPorSede);
   const todasLasCarreras = Object.values(carrerasPorSede).flat();
   
-  const carrerasFiltradas = sedeSeleccionada === "TODAS" 
+  // Obtener lista base por sede
+  const listaBasePorSede = sedeSeleccionada === "TODAS" 
     ? todasLasCarreras 
     : carrerasPorSede[sedeSeleccionada as keyof typeof carrerasPorSede];
 
+  // Aplicar filtro de búsqueda sobre la lista base
+  const carrerasFiltradas = listaBasePorSede.filter(carrera => {
+    // Comparación sin acentos ni mayúsculas/minúsculas
+    const nombreNormalizado = removeAccents(carrera.name.toLowerCase());
+    const busquedaNormalizada = removeAccents(searchTerm.toLowerCase());
+    return nombreNormalizado.includes(busquedaNormalizada);
+  });
+
   const carrerasAMostrar = mostrarTodas ? carrerasFiltradas : carrerasFiltradas.slice(0, 8);
+  
+  // Función para resetear la vista y búsqueda al cambiar de sede
+  const handleSedeChange = (sede: string) => {
+    setSedeSeleccionada(sede);
+    setMostrarTodas(false);
+    setSearchTerm("");
+  };
 
   return (
     <section id="carreras" className="py-20 bg-gradient-subtle">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Carreras que
-            <span className="block bg-gradient-hero bg-clip-text text-transparent">
-              Transforman Vidas
-            </span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Descubre nuestra amplia oferta académica diseñada para prepararte para el futuro.
-            Cada programa está diseñado con los más altos estándares de calidad educativa.
-          </p>
+          {/* ... Títulos ... */}
         </div>
 
         {/* Filtro por Sedes */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        <div className="flex flex-wrap justify-center gap-3 mb-8">
           <Button
             variant={sedeSeleccionada === "TODAS" ? "default" : "outline"}
-            onClick={() => setSedeSeleccionada("TODAS")}
+            onClick={() => handleSedeChange("TODAS")} 
             className={`${sedeSeleccionada === "TODAS" ? "bg-primary text-primary-foreground" : "border-primary text-primary hover:bg-primary hover:text-primary-foreground"}`}
           >
             <MapPin className="h-4 w-4 mr-2" />
@@ -155,7 +168,7 @@ const Carreras = () => {
             <Button
               key={sede}
               variant={sedeSeleccionada === sede ? "default" : "outline"}
-              onClick={() => setSedeSeleccionada(sede)}
+              onClick={() => handleSedeChange(sede)} 
               className={`${sedeSeleccionada === sede ? "bg-primary text-primary-foreground" : "border-primary text-primary hover:bg-primary hover:text-primary-foreground"}`}
             >
               <MapPin className="h-4 w-4 mr-2" />
@@ -163,6 +176,33 @@ const Carreras = () => {
             </Button>
           ))}
         </div>
+
+        {/* BARRA DE BÚSQUEDA */}
+        <div className="mb-12 relative max-w-xl mx-auto">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+            <input
+                type="text"
+                placeholder={`Buscar entre ${carrerasFiltradas.length} carreras...`}
+                className="w-full pl-10 pr-4 py-3 border border-border rounded-lg bg-card text-foreground focus:ring-2 focus:ring-primary focus:border-primary transition duration-150 shadow-sm"
+                value={searchTerm}
+                onChange={(e) => {
+                    setSearchTerm(e.target.value);
+                    setMostrarTodas(true); // Mostrar todas las coincidencias al buscar
+                }}
+            />
+        </div>
+        
+        {/* Manejo de No Resultados */}
+        {carrerasAMostrar.length === 0 && (
+            <div className="text-center py-10 bg-card rounded-lg border border-border mb-12">
+                <p className="text-xl font-medium text-muted-foreground">
+                    No se encontraron carreras que coincidan con "<strong className="text-foreground">{searchTerm}</strong>".
+                </p>
+                <p className="text-sm text-muted-foreground mt-2">
+                    Intenta buscar con otra sede o un término diferente.
+                </p>
+            </div>
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {carrerasAMostrar.map((carrera, index) => {
@@ -200,7 +240,7 @@ const Carreras = () => {
             );
           })}
         </div>
-
+        {/* Botones Ver Todas/Ver Menos */}
         <div className="text-center">
           {!mostrarTodas && carrerasFiltradas.length > 8 && (
             <Button 
