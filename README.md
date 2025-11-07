@@ -8,7 +8,7 @@ Grupo 3:
 
 ## Tecnologias usadas en este proyecto:
 
-Amisión USM esta construida con:
+Admisión USM esta construida con:
 
 - Vite
 - TypeScript
