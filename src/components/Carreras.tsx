@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { 
   Computer, 
   Building, 
@@ -106,6 +106,14 @@ const carrerasPorSede = {
 
 const Carreras = () => {
   const [sedeSeleccionada, setSedeSeleccionada] = useState<string>("TODAS");
+  {/* SI VIENE DE SEDES DEBE TENER EL FILTRO GUARDADO */}
+  useEffect(() => {
+    const filtroGuardado = sessionStorage.getItem('sedeFilter');
+    if (filtroGuardado) {
+      setSedeSeleccionada(filtroGuardado);
+      sessionStorage.removeItem('sedeFilter'); // Limpiar después de usar
+    }
+  }, []);
   const [mostrarTodas, setMostrarTodas] = useState(false);
 
   const sedes = Object.keys(carrerasPorSede);

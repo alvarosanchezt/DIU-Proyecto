@@ -42,7 +42,10 @@ const Header = () => {
                 {item.name}
               </a>
             ))}
-            <Button variant="default" className="bg-gradient-hero hover:opacity-90 shadow-glow">
+            <Button 
+              variant="default" 
+              className="w-full bg-gradient-hero hover:opacity-90"
+              onClick={() => window.open("https://admision.usm.cl/postulaciones-list", "_blank")}>
               Postular Ahora
             </Button>
           </div>
@@ -74,7 +77,10 @@ const Header = () => {
                 </a>
               ))}
               <div className="px-3 pt-2">
-                <Button variant="default" className="w-full bg-gradient-hero hover:opacity-90">
+                <Button 
+                  variant="default" 
+                  className="w-full bg-gradient-hero hover:opacity-90"
+                  onClick={() => window.open("https://admision.usm.cl/postulaciones-list", "_blank")}>
                   Postular Ahora
                 </Button>
               </div>

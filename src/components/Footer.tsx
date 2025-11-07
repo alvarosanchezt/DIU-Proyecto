@@ -17,19 +17,18 @@ const Footer = () => {
       { nombre: "Proceso de Admisión", href: "#admision" },
       { nombre: "Fechas Importantes", href: "#fechas" },
       { nombre: "Becas y Beneficios", href: "#becas" },
-      { nombre: "Centro Pre-Universitario", href: "#" },
     ],
     universidad: [
       { nombre: "Nuestras Carreras", href: "#carreras" },
       { nombre: "Sedes", href: "#sedes" },
-      { nombre: "Investigación", href: "#" },
-      { nombre: "Vida Universitaria", href: "#" },
+      { nombre: "Investigación", href: "https://dgiie.usm.cl/investigacion" },
+      { nombre: "Cultura USM", href: "https://cultura.usm.cl"},
+      { nombre: "USM TV", href:"https://tv.usm.cl"}
     ],
     servicios: [
-      { nombre: "Biblioteca Virtual", href: "#" },
-      { nombre: "Campus Virtual", href: "#" },
-      { nombre: "Bolsa de Trabajo", href: "#" },
-      { nombre: "Intercambios", href: "#" },
+      { nombre: "Biblioteca USM", href: "https://biblioteca.usm.cl/inicio" },
+      { nombre: "Campus Virtual", href: "#sedes" },
+      { nombre: "Intercambios", href: "https://oai.usm.cl/movilidad/desde-la-usm-internacional/intercambio-internacional" },
     ]
   };
 
@@ -52,10 +51,10 @@ const Footer = () => {
   ];
 
   const redesSociales = [
-    { icon: Facebook, href: "#", name: "Facebook" },
-    { icon: Instagram, href: "#", name: "Instagram" },
-    { icon: Youtube, href: "#", name: "YouTube" },
-    { icon: Twitter, href: "#", name: "Twitter" },
+    { icon: Facebook, href: "https://www.facebook.com/usantamaria", name: "Facebook" },
+    { icon: Instagram, href: "https://www.instagram.com/usantamaria", name: "Instagram" },
+    { icon: Youtube, href: "https://www.youtube.com/channel/UCr5rEvayXIC0YnJxDAWuWtQ", name: "YouTube" },
+    { icon: Twitter, href: "https://www.linkedin.com/school/usantamaria", name: "Twitter" },
   ];
 
   return (
@@ -69,17 +68,14 @@ const Footer = () => {
               Mantente informado sobre admisiones
             </h3>
             <p className="text-primary-foreground/80 mb-6 text-lg">
-              Recibe las últimas noticias, fechas importantes y oportunidades directamente en tu correo.
+              Bienvenido a la USM, regístrate para recibir más información sobre otras actividades, carreras, eventos y novedades que tenemos preparados para ti.
+              Síguenos en @admisionusm para más información.
             </p>
             <div className="flex flex-col sm:flex-row max-w-md mx-auto gap-3">
-              <input
-                type="email"
-                placeholder="Tu correo electrónico"
-                className="flex-1 px-4 py-3 rounded-lg bg-primary-foreground/10 border border-primary-foreground/20 text-primary-foreground placeholder-primary-foreground/60 focus:outline-none focus:ring-2 focus:ring-accent"
-              />
-              <Button className="bg-accent text-accent-foreground hover:bg-accent-light px-6">
-                Suscribirse
-                <ArrowRight className="ml-2 h-4 w-4" />
+              <Button className="bg-accent text-accent-foreground hover:bg-accent-light px-6"
+                onClick={() => window.open("https://marketingusm.microsoftcrmportals.com/event/registration?id=Formulario_de_contacto_USM_Ingreso_Centralizado", "_blank")}
+                >
+                Contacto Admisión USM
               </Button>
             </div>
           </div>

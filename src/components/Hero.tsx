@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Users, Award, MapPin } from "lucide-react";
+import { Users, Award, MapPin, ArrowDown } from "lucide-react";
 import heroImage from "@/assets/utfsmFrontis.jpeg";
 
 const Hero = () => {
@@ -34,15 +34,12 @@ const Hero = () => {
             <Button 
               size="lg" 
               className="bg-accent text-accent-foreground hover:bg-accent-light shadow-glow text-lg px-8 py-4 h-auto"
+              onClick={() => {
+                document.getElementById('carreras')?.scrollIntoView({ behavior: 'smooth' });
+              }}
             >
               Explorar Carreras
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button 
-              size="lg" 
-              className="bg-blue-600 text-white hover:bg-blue-700 border-0 text-lg px-8 py-4 h-auto"
-            >
-              Solicitar Información
+              <ArrowDown className="ml-2 h-5 w-5" />
             </Button>
           </div>
 

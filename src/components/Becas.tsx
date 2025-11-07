@@ -14,31 +14,6 @@ import {
 
 const becas = [
   {
-    icon: Award,
-    nombre: "Premio Puntaje Máximo PAES",
-    descripcion: "Beca de arancel y matrícula por la duración nominal de la carrera en la cual has sido seleccionado.",
-    cobertura: "100% arancel + matrícula",
-    requisitos: ["Ser egresado de enseñanza media en 2024.", 
-                 "Obtener uno o más puntajes máximos (1.000 puntos) en las Pruebas de Acceso a la Educación Superior (PAES) 2024.", 
-                 "Obtener un puntaje ponderado USM igual o superior a 850 puntos en la carrera en la cual has sido seleccionado.",
-                "Estar seleccionado en la USM vía Admisión Centralizada en el proceso de Admisión 2025."],
-    vacantes: "-",
-    color: "from-yellow-500 to-yellow-600",
-    destacado: true
-  },
-  {
-    icon: TrendingUp,
-    nombre: "Premio a la Excelencia para Primer Año*",
-    descripcion: "Liberación total o parcial del pago del arancel sólo por el primer año. No contempla matrícula.",
-    cobertura: "arancel del primer año",
-    requisitos: ["Ser egresado de Enseñanza Media en los años 2024 o 2025.", 
-                 "Estar seleccionado en la USM vía Admisión Centralizada en el proceso de Admisión 2026",
-                 "No haber sido alumno regular USM durante el año 2025."],
-    vacantes: "-",
-    color: "from-blue-500 to-blue-600",
-    destacado: false
-  },
-  {
     icon: Heart,
     nombre: "Beca Ingreso Programa Propedéutico “Ex Umbra in Solem”",
     descripcion: "Para admitidos mediante la vía de Ingreso Especial Programa Propedéutico “Ex Umbra in Solem”.",
@@ -178,12 +153,11 @@ const Becas = () => {
                       ))}
                     </ul>
                   </div>
-
                   <Button 
-                    className={`w-full bg-gradient-to-r ${beca.color} hover:opacity-90 text-white shadow-glow`}
                     variant="default"
+                    onClick={() => window.open("https://usm.cl/admision/becas", "_blank")}
                   >
-                    Postular a esta Beca
+                    Saber más
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </CardContent>
@@ -191,7 +165,6 @@ const Becas = () => {
             );
           })}
         </div>
-
         {/* Beneficios adicionales */}
         <div className="mb-12">
           <h3 className="text-2xl font-bold text-center text-foreground mb-8">
@@ -215,36 +188,7 @@ const Becas = () => {
           </div>
         </div>
 
-        {/* Call to action */}
-        <div className="text-center">
-          <Card className="max-w-3xl mx-auto bg-gradient-hero text-primary-foreground border-none">
-            <CardContent className="p-8">
-              <Award className="h-16 w-16 mx-auto mb-4 opacity-80" />
-              <h3 className="text-2xl font-bold mb-4">
-                ¿Necesitas más información sobre becas?
-              </h3>
-              <p className="text-primary-foreground/90 mb-6 text-lg leading-relaxed">
-                Nuestro equipo de asistencia financiera está aquí para ayudarte a encontrar 
-                la mejor opción de financiamiento para tu educación.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
-                  size="lg" 
-                  variant="outline"
-                  className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary bg-transparent"
-                >
-                  Asesoría Financiera
-                </Button>
-                <Button 
-                  size="lg" 
-                  className="bg-accent text-accent-foreground hover:bg-accent-light"
-                >
-                  Simular Financiamiento
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+       
       </div>
     </section>
   );

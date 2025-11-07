@@ -5,7 +5,7 @@ import {
   Microscope, 
   TrendingUp, 
   Users, 
-  Briefcase, 
+  LibraryBig, 
   Brain,
   Building2,
   BookOpen,
@@ -20,7 +20,8 @@ const postgrados = [
     duracion: "2 años",
     regimen:"Un fin de semana al mes",
     color: "from-blue-500 to-blue-600",
-    sede: "Campus Santiago Vitacura"
+    sede: "Campus Santiago Vitacura",
+    link:"https://postgrado.usm.cl/programas/programas-de-magister/magister-en-economia-energetica"
   },
   {
     icon: Microscope,
@@ -29,7 +30,8 @@ const postgrados = [
     duracion: "2 años",
     regimen:"Un fin de semana al mes",
     color: "from-red-500 to-red-600",
-    sede:"Campus Santiago Vitacura"
+    sede:"Campus Santiago Vitacura",
+    link: "https://postgrado.usm.cl/programas/programas-de-magister/magister-en-gestion-de-activos"
   },
   {
     icon: TrendingUp,
@@ -38,7 +40,8 @@ const postgrados = [
     duracion: "2 años",
     regimen: "Clases un fin se semana al mes",
     color: "from-yellow-500 to-yellow-600",
-    sede:"Campus Santiago Vitacura y Campus Casa Central Valparaíso"
+    sede:"Campus Santiago Vitacura y Campus Casa Central Valparaíso",
+    link:"https://postgrado.usm.cl/programas/programas-de-magister/mba-magister-en-gestion-empresarial"
   },
   {
     icon: Brain,
@@ -47,7 +50,8 @@ const postgrados = [
     duracion: "4 años",
     regimen: "Diurno",
     color: "from-blue-500 to-blue-600",
-    sede: "Casa Central Valparaíso"
+    sede: "Casa Central Valparaíso",
+    link:"https://postgrado.usm.cl/programas/programas-de-doctorado/doctorado-en-biotecnologia"
   },
   {
     icon: Building2,
@@ -56,7 +60,8 @@ const postgrados = [
     duracion: "1 año",
     regimen: "Diurno",
     color: "from-red-500 to-red-600",
-    sede: "Casa Central"
+    sede: "Casa Central",
+    link:"https://postgrado.usm.cl/programas/programas-de-doctorado/doctorado-en-ciencias-fisicas"
   },
   {
     icon: Users,
@@ -65,7 +70,8 @@ const postgrados = [
     duracion: "4 años",
     regimen: "Diurno",
     color: "from-yellow-500 to-yellow-600",
-    sede: "UTFSM -UV"
+    sede: "UTFSM -UV",
+    link:"https://postgrado.usm.cl/programas/programas-de-doctorado/doctorado-en-ciencias-mencion-quimica"
   }
 ];
 
@@ -118,8 +124,9 @@ const Postgrados = () => {
                     variant="ghost" 
                     size="sm" 
                     className="w-full text-primary hover:text-primary-foreground hover:bg-primary group-hover:bg-gradient-hero group-hover:text-primary-foreground"
+                    onClick={() => window.open(programa.link,'_blank')}
                   >
-                    Más información
+                    Saber más
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </CardContent>
@@ -127,17 +134,40 @@ const Postgrados = () => {
             );
           })}
         </div>
-
+        {/*BOTON A DOCTORADOSS*/}
         <div className="text-center">
-          <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground mr-4">
-            Ver Todos los Programas
+          <Button size="lg" 
+            variant="outline" 
+            className="border-primary text-primary hover:bg-primary hover:text-primary-foreground mr-4"
+            onClick={() => window.open("https://postgrado.usm.cl/programas/programas-de-doctorado", "_blank")}
+            >
+            Programas de Doctorado
+            <LibraryBig className="ml-2 h-5 w-5" />
+          </Button>
+          {/* BOTON A MAESTRIAS A TODAS*/}
+          <Button size="lg" 
+            variant="outline" 
+            className="border-primary text-primary hover:bg-primary hover:text-primary-foreground mr-4"
+            onClick={() => window.open("https://postgrado.usm.cl/programas/programas-de-magister", "_blank")}
+            >
+            Programas de Maestrías
             <BookOpen className="ml-2 h-5 w-5" />
           </Button>
-          <Button size="lg" className="bg-blue-600 text-white hover:bg-blue-700">
-            Solicitar Información
+          {/* BOTON A POSTULAR*/}  
+          <Button size="lg" 
+            className="bg-blue-600 text-white hover:bg-blue-700"
+            onClick={() => window.open("https://postgrado.usm.cl/postulacion", "_blank")}
+            >
+            Postulación
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
+
+          
+        <p>
+          Si tienes consultas puedes escribir a postgrado@usm.cl
+        </p>
         </div>
+        
       </div>
     </section>
   );

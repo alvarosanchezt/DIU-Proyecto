@@ -20,31 +20,32 @@ const viasAdmision = [
                  "Puntaje Promedio entre las pruebas de Competencia Lectora y Competencia M1 igual o superior a 485 puntos.",
                  "La prueba M2 es obligatoria para todas las ingenierías y licenciaturas, excepto para ingeniería comercial.",
                 "Se considera a la prueba optativa de mayor puntaje."],
-    vacantes: "x",
+    vacantes: "-",
     fecha: "Marzo & Agosto",
     color: "from-blue-500 to-blue-600",
-    popularidad: "Más popular"
+    popularidad: "Más popular",
+    link:"https://usm.cl/admision/admision-centralizada-paes"
   },
   {
     icon: Trophy,
     nombre: "Admisión Especial",
     descripcion: "ingreso de chilenos o extranjeros que hayan concluido sus estudios de Enseñanza Media (o equivalentes) en el extranjero y de personas que hayan logrado una participación destacada en programas o actividades que den garantías de sobrellevar con éxito estudios universitarios.",
-    requisitos: ["Ingreso Especial NEM",
-                 "Ingreso Deportista Destacado USM",
-                 "Ingreso Mujeres Líderes",
-                 "Ingreso Programa STEM",
-                "Ingreso Explora Conicyt-Unesco",
-                "Ingreso Programa Preliminar de Ingeniería (PPI)",
-                "Ingreso Programa de Acompañamiento y Acceso Efectivo (PACE)",
-                "Ingreso Beca de Excelencia Académica (BEA)",
-                "Ingreso Programa Propedéutico “Ex Umbra in Solem”",
-                "Ingreso estudiantes provenientes desde otras   instituciones de Educación Superior (IES)",
-                "Ingreso Titulados de técnicos USM..."],
+    requisitos: ["Postular mediante el portal admision.usm.cl",
+                 "Cédula de identidad vigente.",
+                 "Certificado de Notas de Enseñanza Media.",
+                 "Certificado Ubicación de Egreso de Educación Media.",
+                "Licencia de enseñanza media, o copia legalizada ante notario.",
+                "Copia Tarjeta Inscripción Prueba de Acceso a la Educación Superior (PAES).",
+                 "No ser estudiante regular de la USM."
+,
+                 "Estos son los requisitos fundamentales para acceder a la admisión especial; no obstante, es importante que verifiques los detalles, requisitos y condiciones específicos de cada Vía de Ingreso Especial, ya que algunos de ellos pueden requerir documentos adicionales según la admisión a la que desees postularte." 
+               ],
     
     vacantes: "admision.especial@usm.cl",
     fecha: "Con antelación",
     color: "from-yellow-500 to-yellow-600",
-    popularidad: "Excelencia"
+    popularidad: "Excelencia",
+    link:"https://usm.cl/admision/admision-especial"
   },
   {
     icon: Users,
@@ -54,29 +55,32 @@ const viasAdmision = [
                  "NEM igual o mayor a 5,0 (escala 1 a 7)",
                  "Cédula de Identidad o Pasaporte Vigente",
                 "Licencia de Educación Media",
-                "Prueba de Acceso a la Educación Superior, PAES, optativa *"],
-    vacantes: "x",
+                "Prueba de Acceso a la Educación Superior, PAES, optativa *",
+                "Los requisitos y condiciones pueden variar de un periodo a otro. Te invitamos a mantenerte informado visitando periódicamente usm.cl"],
+    vacantes: "-",
     fecha: "Consultar",
     color: "from-red-500 to-red-600",
-    popularidad: "Técnicos"
+    popularidad: "Técnicos",
+    link:"https://usm.cl/admision/admision-ingreso-directo"
   },
   {
     icon: Star,
-    nombre: "Más Mujeres en STEM",
+    nombre: "Ingreso Mujeres Líderes",
     descripcion: "Con el objetivo de fomentar la admisión de mujeres en el área de la ingeniería, la ciencia y la tecnología.",
-    requisitos: ["Egreso Enseñanza Media 2023 o 2024", 
-                 "Licencia de Educación Media", 
-                 "Copia de Cédula de Identidad por ambos lados",
-                "Certificación de concentración de notas de enseñanza media",
-                "Certificado ubicación de egreso de Educación Media",
-                "Certificados o diplomas de logros alcanzados",
-                "Copia de la tarjeta de inscripción a Prueba de Acceso a la Educación Superior (PAES) vigente",
+    requisitos: ["Egreso Enseñanza Media 2024 o 2025.", 
+                 "Copia de Cédula de Identidad por ambos lados. ", 
+                 "Certificación de concentración de notas de enseñanza media y/o Certificado de ubicación de egreso de Educación Media.*",
+                "Licencia de Educación Media.",
+                "Copia de la tarjeta de inscripción a Prueba de Acceso a la Educación Superior (PAES) vigente.",
                 "Carta Motivacional",
-                "Curriculum con identificación de principales logros alcanzados"],
+                "Curriculum con identificación de principales logros alcanzados",
+                "Certificados o diplomas que acrediten logros alcanzados",
+                "No ser estudiante regular de la USM."],
     vacantes: "-",
     fecha: "Consultar",
     color: "from-purple-500 to-purple-600",
-    popularidad: "Mujeres"
+    popularidad: "Mujeres",
+    link:"https://usm.cl/admision/admision-especial"
   }
 ];
 
@@ -149,8 +153,9 @@ const Admision = () => {
                   <Button 
                     className={`w-full bg-gradient-to-r ${via.color} hover:opacity-90 text-white shadow-glow`}
                     variant="default"
+                    onClick={() => window.open(via.link, '_blank')}
                   >
-                    Postular por esta vía
+                    Más información
                   </Button>
                 </CardContent>
               </Card>

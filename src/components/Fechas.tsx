@@ -38,7 +38,7 @@ const cronograma = [
   {
     fecha: "1 diciembre",
     evento: "PAES - Día 1",
-    descripcion: "Rendición PAES Regular - Día 1",
+    descripcion: "Rendición PAES Competencia Matemática 2 (M2) 15:00",
     estado: "proximo",
     icono: CheckCircle2,
     color: "bg-primary"
@@ -46,21 +46,29 @@ const cronograma = [
   {
     fecha: "2 diciembre ",
     evento: "PAES - Día 2",
-    descripcion: "Rendición PAES Regular - Día 2",
+    descripcion: "Rendición PAES Competencia Lectora 09:00",
     estado: "futuro",
     icono: Calendar,
     color: "bg-secondary"
   },
   {
-    fecha: "20 Agosto",
+    fecha: "2 diciembre",
     evento: "PAES - Día 3",
-      descripcion: "Rendición PAES Regular - Día 3",
+      descripcion: "Rendición PAES electiva de Ciencias 15:00",
     estado: "futuro",
     icono: Clock,
     color: "bg-secondary"
   },
   {
-    fecha: "20 enero 2026",
+    fecha: "3 diciembre",
+    evento: "PAES - Día 3",
+      descripcion: "Rendición PAES Competencia Matemática 1 (M1) 09:00",
+    estado: "futuro",
+    icono: Clock,
+    color: "bg-secondary"
+  },
+  {
+    fecha: "5 enero 2026",
       evento: "Resultados PAES",
       descripcion: "Resultados de Puntajes PAES Regular e inicio de las postulaciones",
       estado: "futuro",
@@ -68,7 +76,7 @@ const cronograma = [
       color: "bg-secondary"
   }
 ];
-
+const linkPostulacion="https://admision.usm.cl/Account/Login/Register?returnUrl=%2Fpostulacion-new%2F"
 const getEstadoBadge = (estado: string) => {
   switch (estado) {
     case 'activo':
@@ -108,14 +116,16 @@ const Fechas = () => {
               </div>
               <div className="flex-1">
                 <h3 className="text-lg font-semibold text-foreground">
-                  ¡Inscripciones Abiertas Ahora!
+                  ¡Postulaciones Abiertas Ahora!
                 </h3>
                 <p className="text-muted-foreground">
-                  Las inscripciones para el proceso de admisión están activas hasta el 15 de febrero.
+                  Las postulaciones para el proceso de admisión están activas!.
                 </p>
               </div>
-              <Button className="bg-primary hover:bg-primary-light text-primary-foreground shadow-glow">
-                Inscribirse Ahora
+              <Button className="bg-primary hover:bg-primary-light text-primary-foreground shadow-glow"
+                onClick={() => window.open(linkPostulacion, '_blank')}
+                >
+                Postular Ahora
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
@@ -158,12 +168,7 @@ const Fechas = () => {
                         <p className="text-muted-foreground mb-4 leading-relaxed">
                           {item.descripcion}
                         </p>
-                        
-                        {item.estado === 'activo' && (
-                          <Button className="mt-4 bg-gradient-hero hover:opacity-90 text-primary-foreground">
-                            Acceder
-                          </Button>
-                        )}
+          
                       </CardContent>
                     </Card>
                   </div>
@@ -171,23 +176,6 @@ const Fechas = () => {
               })}
             </div>
           </div>
-        </div>
-
-        <div className="text-center mt-16">
-          <Card className="max-w-2xl mx-auto border-dashed border-2 border-accent">
-            <CardContent className="p-8">
-              <Calendar className="h-12 w-12 text-accent mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-foreground mb-2">
-                ¿Quieres recordatorios personalizados?
-              </h3>
-              <p className="text-muted-foreground mb-4">
-                Regístrate para recibir notificaciones sobre fechas importantes y no perderte ningún paso del proceso.
-              </p>
-              <Button variant="outline" className="border-accent text-accent hover:bg-accent hover:text-accent-foreground">
-                Configurar Recordatorios
-              </Button>
-            </CardContent>
-          </Card>
         </div>
       </div>
     </section>

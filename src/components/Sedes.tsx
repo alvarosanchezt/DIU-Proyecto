@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { MapPin, Phone, Mail, Users, Building2, FacebookIcon, InstagramIcon } from "lucide-react";
+import { MapPin, Phone, Mail, Users, FacebookIcon, InstagramIcon, CalendarSearch } from "lucide-react";
 import Carreras from "./Carreras";
 
 const sedes = [
@@ -11,7 +11,9 @@ const sedes = [
     email: "admision@usm.cl",
     FacebookIcon: "@usmvalparaiso",
     InstagramIcon: "@usmvalparaiso",
-    imagen: "🏛️"
+    imagen: "🏛️",
+    tour: "https://tour360.usm.cl/casa-central-valparaiso",
+    filtro:"VALPARAÍSO"
   },
   {
     nombre: "Campus San Joaquín",
@@ -20,7 +22,9 @@ const sedes = [
     email: "admision.santiago@usm.cl",
     FacebookIcon: "@usmsantiago",
     InstagramIcon: "@usmsanjoaquin",
-    imagen: "🏢"
+    imagen: "🏢",
+    tour: "https://tour360.usm.cl/san-joaquin",
+    filtro:"SAN JOAQUÍN"
   },
   {
     nombre: "Campus Vitacura",
@@ -29,7 +33,9 @@ const sedes = [
     email: "admision.santiago@usm.cl",
     FacebookIcon: "@usmsantiago",
     InstagramIcon: "@usmvitacura",
-    imagen: "🏫"
+    imagen: "🏫",
+    tour: "https://tour360.usm.cl/vitacura",
+    filtro:"VITACURA"
   },
   {
     nombre: "Sede Viña del Mar",
@@ -38,7 +44,9 @@ const sedes = [
     email: "admision.vina@usm.cl",
     FacebookIcon: "@usmvinadelmar",
     InstagramIcon: "@usmvinadelmar",
-    imagen: "🎓"
+    imagen: "🎓",
+    tour: "https://tour360.usm.cl/vina-del-mar",
+    filtro:"VIÑA DEL MAR"
   },
   {
     nombre: "Sede Concepción",
@@ -47,10 +55,12 @@ const sedes = [
     email: "admision.concepcion@usm.cl",
     FacebookIcon: "@usmconcepcion",
     InstagramIcon: "@usmconcepcion",
-    imagen: "🏫"
+    imagen: "🏫",
+    tour:"https://tour360.usm.cl/concepcion",
+    filtro:"CONCEPCIÓN"
   }
 ];
-const linktour = "https://tour360.usm.cl"
+const linkEventos = "https://usm.cl/eventos";
 
 const Sedes = () => {
   return (
@@ -107,19 +117,16 @@ const Sedes = () => {
                         <span className="text-sm font-medium">{sede.InstagramIcon}</span>
                       </div>
                     </div>
-
+                    {/* BOTON AGREGADO DE TOUR VIRTUAL 360°*/}
                     <Button 
-                      className="w-full mt-4 bg-gradient-hero hover:opacity-90 text-primary-foreground"
-                      variant="default"
-                      onClick={() => {
-                        const carrerasSection = document.getElementById("carreras");
-                        if (carrerasSection) {
-                          carrerasSection.scrollIntoView({ behavior: 'smooth' });
-                        }
-                      }}
+                      className="w-full mt-2"
+                      variant="outline"
+                      onClick={() => window.open(sede.tour, '_blank')}
                     >
-                      Más Información
+                      <MapPin className="mr-2 h-4 w-4" />
+                      Tour Virtual 360°
                     </Button>
+                    
                   </div>
                 </div>
               </CardContent>
@@ -130,18 +137,17 @@ const Sedes = () => {
         <div className="text-center">
           <Card className="max-w-2xl mx-auto border-dashed border-2 border-muted hover:border-primary transition-colors duration-300">
             <CardContent className="p-8">
-              <MapPin className="h-12 w-12 text-primary mx-auto mb-4" />
+              <CalendarSearch className="h-12 w-12 text-primary mx-auto mb-4" />
               <h3 className="text-xl font-semibold text-foreground mb-2">
-                ¿Quieres conocer nuestras instalaciones?
+                ¿Tienes tiempo libre?
               </h3>
               <p className="text-muted-foreground mb-4">
-                Explora nuestras sedes desde cualquier lugar con nuestro tour virtual de 360°.
-                Conoce las instalaciones, laboratorios y espacios de estudio de forma inmersiva.
+                La universidad realiza diferentes eventos y actividades para que puedas participar!
               </p>
               <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-                onClick={() => window.open(linktour, '_blank')}
+                onClick={() => window.open(linkEventos, '_blank')}
                 >
-                  Tour Virtual 360°
+                  Eventos
               </Button>
             </CardContent>
           </Card>
