@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-import logoPath from "@/assets/universidad-elite-logo.png";
+import logoPath from "@/assets/logo-usm-color.svg";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,13 +18,13 @@ const Header = () => {
   return (
     <header className="fixed top-0 w-full bg-background/95 backdrop-blur-md border-b border-border z-50">
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <div className="flex items-center space-x-3">
             <img 
               src={logoPath} 
               alt="Universidad Logo" 
-              className="h-10 w-auto object-contain"
+              className="h-14 w-auto object-contain"
             />
             <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">
               Admisión USM

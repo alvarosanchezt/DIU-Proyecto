@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
+import logoBlancoPath from "@/assets/logo-usm-oscuro.svg";
 import { 
-  GraduationCap, 
   MapPin, 
   Phone, 
   Mail, 
@@ -88,9 +88,11 @@ const Footer = () => {
           {/* Logo and Description */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-2 mb-6">
-              <div className="w-10 h-10 bg-accent rounded-lg flex items-center justify-center">
-                <GraduationCap className="h-6 w-6 text-accent-foreground" />
-              </div>
+              <img 
+                src={logoBlancoPath} 
+                alt="Logo USM Blanco" 
+                className="h-14 w-auto"
+              />
               <span className="text-2xl font-bold">Admisión USM</span>
             </div>
             <p className="text-primary-foreground/80 mb-6 leading-relaxed max-w-md">
