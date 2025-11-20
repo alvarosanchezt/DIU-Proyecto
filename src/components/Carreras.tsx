@@ -81,7 +81,7 @@ const carrerasFiltradas = carreras.filter(carrera => {
           <Input
             type="text"
             placeholder={`Buscar entre ${carreras.length} carreras...`}
-            className="pl-10 text-base"
+            className="pl-10 text-base border-2 border-primary/40 focus-visible:border-primary focus-visible:ring-primary"
             value={filtroNombre}
             onChange={(e) => setFiltroNombre(e.target.value)}
           />

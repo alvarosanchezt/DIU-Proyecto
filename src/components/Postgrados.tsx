@@ -22,6 +22,7 @@ const tiposPostgrado = ["Doctorado", "Magíster Científico-Tecnológicos", "Mag
 const Postgrados = () => {
   const [tipoSeleccionado, setTipoSeleccionado] = useState("TODOS");
   const [filtroNombre, setFiltroNombre] = useState("");
+  const [mostrarTodos, setMostrarTodos] = useState(false);
 
   // Lógica de Filtrado
   const programasFiltrados = postgrados.filter(programa => {
@@ -32,6 +33,8 @@ const Postgrados = () => {
     
     return coincideTipo && coincideNombre;
   });
+
+  const programasAMostrar = mostrarTodos ? programasFiltrados : programasFiltrados.slice(0, 6);
 
   return (
     <section id="postgrados" className="py-20 bg-gradient-subtle">
@@ -52,8 +55,8 @@ const Postgrados = () => {
           {/* 1. Buscador de Texto */}
           <div className="relative w-full md:flex-1">
             <Input 
-              placeholder="Buscar programa..." 
-              className="pl-10"
+              placeholder={`Buscar entre ${postgrados.length} programas...`}
+              className="pl-10 border-2 border-primary/40 focus-visible:border-primary focus-visible:ring-primary"
               value={filtroNombre}
               onChange={(e) => setFiltroNombre(e.target.value)}
             />
@@ -65,8 +68,7 @@ const Postgrados = () => {
             <Button
               variant={tipoSeleccionado === "TODAS" ? "default" : "outline"}
               onClick={() => setTipoSeleccionado("TODOS")}
-              className="rounded-full"
-            >
+              className={`rounded-full border-2 ${tipoSeleccionado === "TODOS" ? "bg-primary text-primary-foreground border-primary" : "border-primary text-primary hover:bg-primary hover:text-primary-foreground"}`}            >
               Todos
             </Button>
             {tiposPostgrado.map((tipo) => (
@@ -74,7 +76,7 @@ const Postgrados = () => {
                 key={tipo}
                 variant={tipoSeleccionado === tipo ? "default" : "outline"}
                 onClick={() => setTipoSeleccionado(tipo)}
-                className="rounded-full"
+                className={`rounded-full border-2 ${tipoSeleccionado === tipo ? "bg-primary text-primary-foreground border-primary" : "border-primary text-primary hover:bg-primary hover:text-primary-foreground"}`}
               >
                 {tipo}
               </Button>
@@ -83,9 +85,9 @@ const Postgrados = () => {
         </div>
 
         {/* GRID DE TARJETAS */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {programasFiltrados.length > 0 ? (
-            programasFiltrados.map((programa, index) => {
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {programasAMostrar.length > 0 ? (
+            programasAMostrar.map((programa, index) => {
               const Icon = programa.icon;
               return (
                 <Card key={index} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-border overflow-hidden flex flex-col h-full">
@@ -99,11 +101,11 @@ const Postgrados = () => {
                       />
                       <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors" />
                       
-                      {/* Badge del Tipo (Importante para distinguir visualmente) */}
+                      {/* Badge del Tipo */}
                       <div className="absolute top-4 right-4">
                         <span className={`px-3 py-1 rounded-full text-xs font-bold text-white backdrop-blur-md border border-white/20 
                           ${programa.tipo === 'Doctorado' ? 'bg-purple-600/80' : 
-                            programa.tipo === 'Magíster Académico' ? 'bg-blue-600/80' : 'bg-orange-600/80'}`}>
+                            programa.tipo === 'Magíster Científico-Tecnológicos' ? 'bg-blue-600/80' : 'bg-orange-600/80'}`}>
                           {programa.tipo}
                         </span>
                       </div>
@@ -138,11 +140,11 @@ const Postgrados = () => {
                     </div>
 
                     <Button 
-                      className="w-full mt-auto"
+                      className="w-full mt-auto border-1"
                       variant="outline"
                       onClick={() => window.open(programa.link, '_blank')}
                     >
-                      Ver Programa Oficial
+                      Ver Más
                       <ExternalLink className="ml-2 h-4 w-4" />
                     </Button>
                   </CardContent>
@@ -164,6 +166,30 @@ const Postgrados = () => {
                 Limpiar filtros
               </Button>
             </div>
+          )}
+        </div>
+        <div className="text-center">
+          {!mostrarTodos && programasFiltrados.length > 6 && (
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+              onClick={() => setMostrarTodos(true)}
+            >
+              Ver Todos los Programas ({programasFiltrados.length})
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          )}
+          {mostrarTodos && (
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+              onClick={() => setMostrarTodos(false)}
+            >
+              Ver Menos Programas
+              <ArrowRight className="ml-2 h-5 w-5 rotate-180" />
+            </Button>
           )}
         </div>
       </div>
