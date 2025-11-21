@@ -6,6 +6,7 @@ import {
   Trophy, 
   Users, 
   Star,
+  ExternalLink,
   CheckCircle,
   Clock,
   Target
@@ -36,8 +37,7 @@ const viasAdmision = [
                  "Certificado Ubicación de Egreso de Educación Media.",
                 "Licencia de enseñanza media, o copia legalizada ante notario.",
                 "Copia Tarjeta Inscripción Prueba de Acceso a la Educación Superior (PAES).",
-                 "No ser estudiante regular de la USM."
-,
+                 "No ser estudiante regular de la USM.",
                  "Estos son los requisitos fundamentales para acceder a la admisión especial; no obstante, es importante que verifiques los detalles, requisitos y condiciones específicos de cada Vía de Ingreso Especial, ya que algunos de ellos pueden requerir documentos adicionales según la admisión a la que desees postularte." 
                ],
     
@@ -105,9 +105,9 @@ const Admision = () => {
           {viasAdmision.map((via, index) => {
             const Icon = via.icon;
             return (
-              <Card key={index} className="group hover:shadow-elegant transition-all duration-300 hover:-translate-y-2 border-border relative overflow-hidden">
+              <Card key={index} className="flex flex-col h-full group hover:shadow-elegant transition-all duration-300 hover:-translate-y-2 border-border relative overflow-hidden">
                 <div className={`absolute top-0 left-0 w-2 h-full bg-gradient-to-b ${via.color}`}></div>
-                <CardContent className="p-8 pl-12">
+                <CardContent className="flex flex-col flex-1 p-8 pl-12">
                   <div className="flex items-start justify-between mb-4">
                     <div className={`w-14 h-14 bg-gradient-to-r ${via.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
                       <Icon className="h-7 w-7 text-white" />
@@ -151,11 +151,12 @@ const Admision = () => {
                   </div>
 
                   <Button 
-                    className={`w-full bg-gradient-to-r ${via.color} hover:opacity-90 text-white shadow-glow`}
+                    className={`w-full mt-auto bg-gradient-to-r ${via.color} hover:opacity-90 text-white shadow-glow`}
                     variant="default"
                     onClick={() => window.open(via.link, '_blank')}
                   >
                     Más información
+                    <ExternalLink className="ml-2 h-4 w-4" />
                   </Button>
                 </CardContent>
               </Card>
