@@ -168,7 +168,10 @@ const carrerasFiltradas = carreras.filter(carrera => {
               size="lg" 
               variant="outline" 
               className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-              onClick={() => setMostrarTodas(false)}
+              onClick={() => {
+                setMostrarTodas(false);
+                document.getElementById("carreras")?.scrollIntoView({ behavior: "auto" });
+              }}
             >
               Ver Menos Carreras
               <ArrowRight className="ml-2 h-5 w-5 rotate-180" />

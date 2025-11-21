@@ -185,7 +185,10 @@ const Postgrados = () => {
               size="lg" 
               variant="outline" 
               className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-              onClick={() => setMostrarTodos(false)}
+              onClick={() => {
+                setMostrarTodos(false);
+                document.getElementById("postgrados")?.scrollIntoView({ behavior: "auto" });
+              }}
             >
               Ver Menos Programas
               <ArrowRight className="ml-2 h-5 w-5 rotate-180" />
